@@ -1,0 +1,86 @@
+<md-content flex layout="column">
+	<md-toolbar class="md-theme-light">
+		<h2 class="md-toolbar-tools">
+			<span>{{title}}</span>
+		</h2>
+	</md-toolbar>
+	<div flex layout="column">
+
+		<div layout="row" layout-wrap>
+
+			<div flex="100" flex-gt-sm="50" layout="column">
+				<div>
+					<!--
+					In IE, we cannot apply flex directly to <fieldset>
+					@see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+				-->
+				<fieldset class="standard" >
+					<legend>Using &lt;md-checkbox&gt; with &lt;ng-checked&gt; </legend>
+					<div layout="row" layout-wrap flex>
+						<div flex="50" ng-repeat="item in items">
+							<md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+								{{ item }} <span ng-if="exists(item, selected)">selected</span>
+							</md-checkbox>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<div flex="100" flex-gt-sm="50" layout="column">
+			<div >
+				<fieldset class="standard">
+					<legend>Using &lt;input type="checkbox"&gt;</legend>
+					<div layout="row" layout-wrap flex>
+						<div ng-repeat="item in items" class="standard" flex="50">
+							<label>
+								<input type="checkbox" ng-checked="exists(item, selected)"
+								ng-click="toggle(item, selected)"/>
+								{{ item }}
+							</label>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<div flex="100">
+			<h2 class="md-title">Selected Items</h2>
+			<code style="display: block; padding: 8px;">{{selected | json}}</code>
+		</div>
+	</div>
+	<md-toolbar class="md-theme-light">
+		<h2 class="md-toolbar-tools">
+			<span>More Check boxes</span>
+		</h2>
+	</md-toolbar>
+	<div layout="row" layout-wrap>
+		<div flex="100" layout="column">
+			<div>
+				<!--
+				In IE, we cannot apply flex directly to <fieldset>
+				@see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+			-->
+			<fieldset class="demo-fieldset" >
+				<legend class="demo-legend">Using &lt;md-checkbox&gt; with the 'indeterminate' attribute </legend>
+				<div layout="row" layout-wrap flex>
+					<div flex-xs flex="50">
+						<md-checkbox aria-label="Select All"
+						ng-checked="isChecked()"
+						md-indeterminate="isIndeterminate()"
+						ng-click="toggleAll()">
+						<span ng-if="isChecked()">Un-</span>Select All
+					</md-checkbox>
+				</div>
+				<div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
+					<md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+						{{ item }}
+					</md-checkbox>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+</div>
+</md-content>
